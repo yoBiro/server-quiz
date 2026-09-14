@@ -1,7 +1,7 @@
-import { connection } from "../database";
+import { connection } from "../database.js";
 
 export async function getAllUsers() {
-  const sql = `SELECT * FROM tb_user;`
+  const sql = `SELECT * FROM tb_usuario;`
 
   const conn = await connection()
     try {
@@ -15,7 +15,7 @@ export async function getAllUsers() {
 }
 
 export async function getUser(user_id) {
-  const sql = `SELECT * FROM tbl_cliente WHERE user_id = ?;`
+  const sql = `SELECT * FROM tb_usuario WHERE id_usuario = ?;`
 
   const conn = await connection()
     try {
