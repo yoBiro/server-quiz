@@ -27,3 +27,19 @@ export async function getUser(user_id) {
         return err.message
       }
 }
+
+export async function createUser(infos) {
+  const sqlInsert = `INSERT INTO tb_usuario (nome_usuario, email_usuario, senha_usuario, data_nascimento_usuario, estado_usuario, sexo_usuario, criado_em) VALUES (?, ?, ?, ?, ?, ?, ?);`
+
+  const data = [infos]
+  const conn = await connection()
+
+  try {
+      const [results] = await conn.query(sqlInsert, infos)
+      await conn.end()
+      return results
+  } catch (err) {
+      await conn.end()
+      return err.message
+  }
+}
